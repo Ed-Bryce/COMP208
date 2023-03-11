@@ -17,7 +17,7 @@
 
 <!-- Nav Bar -->
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <div class="container-fluid">
+    <div class="container-fluid justify-content-center">
         <span class="navbar-brand">Chess Game</span>
     </div>
 </nav>
@@ -30,17 +30,21 @@
                 <div class = "d-flex justify-content-center">
                     <h3>Login</h3> 
                 </div>
-                <form action="ENTER LATER">
-                    <div class="mb-3 mt-3">
-                        <label for="email" class="form-label">Email:</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                <form action="loginVerify.php" class="needs-validation">
+                    <div class="form-floating mb-3 mt-3">
+                        <input type="text" class="form-control" id="email" placeholder="Enter email" name="email"  required>
+                        <label for="email">Email</label>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please enter your username.</div>
                     </div>
-                    <div class="mb-3">
-                        <label for="pwd" class="form-label">Password:</label>
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
-                    </div>
+                    <div class="form-floating mt-3 mb-3">
+                        <input type="text" class="form-control" id="pwd" placeholder="Enter password" name="pswd"  required>
+                        <label for="pwd">Password</label>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please enter your password.</div>
+                    </div> 
                     <div class = "d-flex">
-                        <p class="small"><a class="text-primary" href="#########">Forgot password?</a></p>
+                        <p class="small"><a class="text-primary" href="forgotPassword.php">Forgot password?</a></p>
                     </div>
                     <div class="d-grid">
                         <button class="btn btn-outline-dark" type="submit">Login</button>

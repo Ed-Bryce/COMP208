@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="styling/styling.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Chess Game - Login</title>
+    <title>Chess Game - Create Account</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
@@ -17,12 +17,12 @@
 
 <!-- Nav Bar -->
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <div class="container-fluid">
+    <div class="container-fluid justify-content-center">
         <span class="navbar-brand">Chess Game</span>
     </div>
 </nav>
 
-<!-- Login Form -->
+<!-- Sign Up Form -->
 <div class = "container d-flex align-items-center border" style = "max-height:600px; min-height:600px">
     <div class = "container d-flex justify-content-center border">  
         <div class = "border-5 border-top border-primary shadow-lg" style = "width:50%;">
@@ -30,7 +30,7 @@
                 <div class = "d-flex justify-content-center border">
                     <h3>Create Account</h3> 
                 </div>
-                <form action="ENTER LATER">
+                <form action="createAccount.php">
                     <div class="mb-3 mt-3">
                         <label for="email" class="form-label">Email:</label>
                         <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
@@ -41,9 +41,6 @@
                     </div>
                     <div class="d-grid">
                         <button class="btn btn-outline-dark" type="submit">Login</button>
-                    </div>
-                    <div class = "pt-2 d-flex justify-content-center border">
-                        <p class="small"><a class="text-primary" href="#########">Forgot password?</a></p>
                     </div>
                 </form> 
             </div>
