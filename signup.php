@@ -23,12 +23,12 @@
 </nav>
 
 <!-- Login Form -->
-<div class = "container d-flex align-items-center" style = "max-height:600px; min-height:600px">
-    <div class = "container d-flex justify-content-center">  
+<div class = "container d-flex align-items-center border" style = "max-height:600px; min-height:600px">
+    <div class = "container d-flex justify-content-center border">  
         <div class = "border-5 border-top border-primary shadow-lg" style = "width:50%;">
             <div class = "p-5 border border-2 border-top-0 shadow-lg">
-                <div class = "d-flex justify-content-center">
-                    <h3>Login</h3> 
+                <div class = "d-flex justify-content-center border">
+                    <h3>Create Account</h3> 
                 </div>
                 <form action="ENTER LATER">
                     <div class="mb-3 mt-3">
@@ -39,14 +39,11 @@
                         <label for="pwd" class="form-label">Password:</label>
                         <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
                     </div>
-                    <div class = "d-flex">
-                        <p class="small"><a class="text-primary" href="#########">Forgot password?</a></p>
-                    </div>
                     <div class="d-grid">
                         <button class="btn btn-outline-dark" type="submit">Login</button>
                     </div>
-                    <div class = "pt-3 d-flex justify-content-center">
-                        <p class="mb-0  text-center">Don't have an account? <a href="signup.php" class="text-primary fw-bold">Sign Up</a></p>
+                    <div class = "pt-2 d-flex justify-content-center border">
+                        <p class="small"><a class="text-primary" href="#########">Forgot password?</a></p>
                     </div>
                 </form> 
             </div>
