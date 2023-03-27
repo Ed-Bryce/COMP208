@@ -33,7 +33,7 @@
             else {
                 echo "<p> error - no user </p>";
                 $_SESSION["failed"] = "true";
-                header("Location: /14brycee/login.php");
+                header("Location: ../login.php");
                 exit();
             }
         }
