@@ -30,7 +30,7 @@
                 <div class = "d-flex justify-content-center">
                     <h3>Login</h3> 
                 </div>
-                <form action="loginVerify.php" class="needs-validation">
+                <form action="includes/loginVerify.php" class="needs-validation" method="post">
                     <div class="form-floating mb-3 mt-3">
                         <input type="text" class="form-control" id="email" placeholder="Enter email" name="email"  required>
                         <label for="email">Email</label>
@@ -38,7 +38,7 @@
                         <div class="invalid-feedback">Please enter your username.</div>
                     </div>
                     <div class="form-floating mt-3 mb-3">
-                        <input type="text" class="form-control" id="pwd" placeholder="Enter password" name="pswd"  required>
+                        <input type="text" class="form-control" id="password" placeholder="Enter password" name="password"  required>
                         <label for="pwd">Password</label>
                         <div class="valid-feedback">Valid.</div>
                         <div class="invalid-feedback">Please enter your password.</div>

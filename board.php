@@ -32,19 +32,38 @@
 
     <!-- Sidebar -->
     <div class="offcanvas offcanvas-start" id="menu">
-    <div class="offcanvas-header">
+        <div class="offcanvas-header">
         <!-- sidebar header -->
 
         <h1 class="offcanvas-title">Menu</h1>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
 
-    </div>
-    <div class="offcanvas-body">
+        </div>
+        <div class="offcanvas-body">
         
         <!-- sidebar body -->
 
+        </div>
     </div>
-</div>
 
+    <!-- Body   ratio ratio-1x1-->
+    <div class="row">
+
+        <!-- Game Info -->
+        <div class = "container m-5 border col-3" style="background-color:#212529">
+            <div style="color:white">
+                <h3 class="m-1" style="text-align:center">Game Info</h3>
+            </div> 
+        </div>
+
+        <!-- Board -->
+        <div class = "container m-5 col-8 border">
+            <div class = "container p-1 border ratio ratio-1x1">
+        
+            <p> add board here </p>
+
+            </div>
+        </div>
+    </div>
 </body>
 </html>

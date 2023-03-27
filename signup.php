@@ -42,6 +42,9 @@
                     <div class="d-grid">
                         <button class="btn btn-outline-dark" type="submit">Login</button>
                     </div>
+                    <div class = "pt-3 d-flex justify-content-center">
+                        <p class="mb-0  text-center">Have an account? <a href="login.php" class="text-primary fw-bold">Log In</a></p>
+                    </div>
                 </form> 
             </div>
         </div>
