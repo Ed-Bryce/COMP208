@@ -24,7 +24,7 @@
 
 <!-- Login Form -->
 <div class = "container d-flex align-items-center" style = "max-height:600px; min-height:600px">
-    <div class = "container d-flex justify-content-center">  
+    <div class = "container d-flex justify-content-center">
         <div class = "border-5 border-top border-primary shadow-lg" style = "width:50%;">
             <div class = "p-5 border border-2 border-top-0 shadow-lg">
                 <div class = "d-flex justify-content-center">

@@ -43,9 +43,9 @@
         
         <!-- sidebar body -->
 
-    </div>
-
     <p>cheese</p>
+
+    </div>
 
 </div>
 

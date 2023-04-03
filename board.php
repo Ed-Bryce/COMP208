@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body>
+<body style = "background-color: #2C3289;">
     <!-- Nav Bar -->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container justify-content-start">
@@ -57,10 +57,10 @@
         </div>
 
         <!-- Board -->
-        <div class = "container m-5 col-8 border">
-            <div class = "container p-1 border ratio ratio-1x1">
+        <div class = "container d-flex align-items-center border" style = "max-width:300px; min-width:900px; max-height:300px; min-height:900px">
+            <div class = "container d-flex justify-content-center border">
         
-            <p> add board here </p>
+            <p style = "color: white"> add board here </p>
 
             </div>
         </div>
