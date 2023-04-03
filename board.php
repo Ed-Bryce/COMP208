@@ -1,3 +1,7 @@
+<?php
+    require "includes/loginSession.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +30,7 @@
             <span class="navbar-brand">Chess Game</span>
         </div>
         <div class="container justify-content-end">
-            <button type="button" class="btn btn-danger">Log Out</button>
+            <a href="login.php" class="btn btn-danger" role="button">Logout</a>
         </div>
     </nav>
 
