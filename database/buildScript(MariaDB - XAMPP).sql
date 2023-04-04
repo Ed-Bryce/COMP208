@@ -36,7 +36,7 @@ ENGINE = InnoDB;
 -- Table `chessdb`.`Friends`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `chessdb`.`Friends` (
-  `relationID` INT NOT NULL,
+  `relationID` INT NOT NULL AUTO_INCREMENT,
   `userID_1` INT NOT NULL,
   `userID_2` INT NOT NULL,
   PRIMARY KEY (`relationID`, `userID_1`, `userID_2`),
