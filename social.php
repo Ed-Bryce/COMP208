@@ -34,23 +34,36 @@
         </div>
     </nav>
 
+    <!-- body -->
+    <div class="row m-3">
+        <div class="container-flex m-5 col border shadow-lg" style="background-color:#212529; color:white">
+            <h2 style="text-align:center"><u> Friends List </u></h2>
+        </div>
+        <div class="container-flex m-5 col border shadow-lg" style="background-color:#212529; color:white">
+            <h2 style="text-align:center"><u> Column 2 </u></h2>
+
+        </div>
+        <div class="container-flex m-5 col border shadow-lg" style="background-color:#212529; color:white">
+            <h2 style="text-align:center"><u> Column 3 </u></h2>
+
+        </div>
+    </div> 
+
     <!-- Sidebar -->
     <div class="offcanvas offcanvas-start" id="menu">
-    <div class="offcanvas-header">
-        <!-- sidebar header -->
+        <div class="offcanvas-header">
+            <!-- sidebar header -->
 
-        <h1 class="offcanvas-title">Menu</h1>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
-
-    </div>
-    <div class="offcanvas-body">
+            <h1 class="offcanvas-title">Menu</h1>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
         
-        <!-- sidebar body -->
+            <!-- sidebar body -->
 
-    <p>cheese</p>
+            <p>cheese</p>
 
-    </div>
-
+        </div>
 </div>
 
 </body>
