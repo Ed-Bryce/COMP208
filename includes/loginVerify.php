@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require "dbConnection.php";
     $email = $_POST["email"];
     $password = $_POST["password"];
@@ -20,6 +21,7 @@
                     $_SESSION["logged_in"] = "true";
                     $_SESSION["failed"] = "false";
                     $_SESSION["userID"] = $row["userID"];
+                    echo "<p>" . $_SESSION["logged_in"] . "</p>";
                     header("Location: ../board.php");
                     exit;
                 }
