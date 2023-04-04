@@ -1,5 +1,5 @@
 <?php
-    require "includes/loginSession.php";
+    //require "includes/loginSession.php";
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +14,7 @@
 </head>
 <body style = "background-color: #2C3289;">
     <!-- Nav Bar -->
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark shadow-lg">
         <div class="container justify-content-start">
             <button type="button" class="btn btn-secondary" data-bs-toggle="offcanvas" data-bs-target="#menu">Menu</button>
             <ul class="navbar-nav pl-3">
@@ -54,19 +54,15 @@
     <div class="row">
 
         <!-- Game Info -->
-        <div class = "container m-5 border col-3" style="background-color:#212529">
+        <div class = "container m-10 border col-3 shadow-lg" style="background-color:#212529;  margin-top: 60px">
             <div style="color:white">
                 <h3 class="m-1" style="text-align:center">Game Info</h3>
             </div> 
         </div>
 
         <!-- Board -->
-        <div class = "container d-flex align-items-center border" style = "max-width:300px; min-width:900px; max-height:300px; min-height:900px">
-            <div class = "container d-flex justify-content-center border">
-        
-            <p style = "color: white"> add board here </p>
-
-            </div>
+        <div class="container d-flex align-items-center border shadow-lg" style="width: 48%; height: 80vh; margin-top: 60px">
+            <p style="color: white;">add board here</p>
         </div>
     </div>
 </body>
