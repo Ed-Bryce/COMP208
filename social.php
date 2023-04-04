@@ -14,23 +14,23 @@
 </head>
 <body>
     <!-- Nav Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container justify-content-start">
             <button type="button" class="btn btn-secondary" data-bs-toggle="offcanvas" data-bs-target="#menu">Menu</button>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="board.php">Play</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="social.php">Friends</a>
-                    </li>
-                </ul>
-                <a href="login.php" class="btn btn-outline-danger" type="submit">Log Out</a>
-            </div>     
+            <ul class="navbar-nav pl-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="board.php">Play</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="social.php">Friends</a>
+                </li>
+            </ul>
+        </div>
+        <div class="container-fluid justify-content-center">
+            <span class="navbar-brand">Chess Game</span>
+        </div>
+        <div class="container justify-content-end">
+            <a href="login.php" class="btn btn-danger" role="button">Logout</a>
         </div>
     </nav>
 
