@@ -38,6 +38,9 @@
     <div class="row m-3">
         <div class="container-flex m-5 col border shadow-lg" style="background-color:#212529; color:white">
             <h2 style="text-align:center"><u> Friends List </u></h2>
+            <?php
+                include "includes/getFriends.php";
+            ?>
         </div>
         <div class="container-flex m-5 col border shadow-lg" style="background-color:#212529; color:white">
             <h2 style="text-align:center"><u> Column 2 </u></h2>

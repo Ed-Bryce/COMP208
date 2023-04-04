@@ -1,6 +1,6 @@
 <?php
     require "dbConnection.php";
-    $sql = "SELECT relationID FROM chessdb.friends WHERE userID_1 = ? OR userID_2 = ?";
+    $sql = "SELECT * FROM chessdb.friends WHERE userID_1 = ? OR userID_2 = ?";
     // idea set userID as session after login
     $userID = $_SESSION["userID"];
     echo "<p>" . $userID . "</p>";
@@ -12,6 +12,10 @@
             mysqli_stmt_bind_param($stmt, "ss", $userID, $userID);
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt);
-
+            while($row = mysqli_fetch_assoc($result)){
+                echo "<p>" . $row["relationID"] . "</p>";
+                echo "<p>" . $row["userID_1"] . "</p>";
+                echo "<p>" . $row["userID_2"] . "</p>";
+            }
         }
 ?>
