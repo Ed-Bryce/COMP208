@@ -12,5 +12,5 @@
     }
     elseif($conn){
         $_SESSION["connection_error"] = "false";
-        echo "<p> Connected Successfully </p> ";
+        //echo "<p> Connected Successfully </p> ";
     }
