@@ -19,6 +19,7 @@
                     echo 'Password is valid!';
                     $_SESSION["logged_in"] = "true";
                     $_SESSION["failed"] = "false";
+                    $_SESSION["userID"] = $row["userID"];
                     header("Location: ../board.php");
                     exit;
                 }
