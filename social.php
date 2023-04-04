@@ -14,25 +14,38 @@
 </head>
 <body>
     <!-- Nav Bar -->
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <div class="container justify-content-start">
-            <button type="button" class="btn btn-secondary" data-bs-toggle="offcanvas" data-bs-target="#menu">Menu</button>
-            <ul class="navbar-nav pl-3">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button type="button" class="btn btn-secondary" data-bs-toggle="offcanvas" data-bs-target="#menu">Menu</button>
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="board.php">Play</a>
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="social.php">Friends</a>
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Dropdown </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li>
             </ul>
+            <a href="login.php" class="btn btn-outline-danger" type="submit">Log Out</a>
         </div>
-        <div class="container-fluid justify-content-center">
-            <span class="navbar-brand">Chess Game</span>
-        </div>
-        <div class="container justify-content-end">
-            <a href="login.php" class="btn btn-danger" role="button">Logout</a>
-        </div>
-    </nav>
+    </div>
+</nav>
 
     <!-- body -->
     <div class="row m-3">
