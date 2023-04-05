@@ -36,20 +36,26 @@
 
     <!-- body -->
     <div class="row m-3">
-        <div class="container-flex m-5 col border shadow-lg" style="background-color:#212529; color:white">
-            <h2 style="text-align:center"><u> Friends List </u></h2>
-                <ul class="list-group m-3">
-                    <?php
-                        include "includes/getFriends.php";
-                    ?>
-                </ul>
+        <div class="container-flex m-5 col border shadow-lg" style="background-color:#212529; color:white; border-radius:20px;">
+            <h2 class="mt-2" style="text-align:center"><u> Friends </u></h2>
+            <ul class="list-group m-3">
+                <?php
+                    include "includes/getFriends.php";
+                ?>
+            </ul>
+            <h5 class="ms-4"><u>Add Friend</u></h4>
+            <form action="includes/addFriend.php" method="post" class="d-flex m-3">
+                <input class="form-control me-2" type="search" id="username" name="username" placeholder="Search username" aria-label="addFriend">
+                <button class="btn btn-outline-success" type="submit">Add</button>
+            </form>
+            <h5 class="ms-4"><u>Friend Requests</u></h4>
         </div>
-        <div class="container-flex m-5 col border shadow-lg" style="background-color:#212529; color:white">
-            <h2 style="text-align:center"><u> Column 2 </u></h2>
-
+        <div class="container-flex m-5 col border shadow-lg" style="background-color:#212529; color:white; border-radius:20px;">
+            <h2 class="mt-2" style="text-align:center"><u> Messages </u></h2>
+            
         </div>
-        <div class="container-flex m-5 col border shadow-lg" style="background-color:#212529; color:white">
-            <h2 style="text-align:center"><u> Column 3 </u></h2>
+        <div class="container-flex m-5 col border shadow-lg" style="background-color:#212529; color:white; border-radius:20px;">
+            <h2 class="mt-2" style="text-align:center"><u> Column 3 </u></h2>
 
         </div>
     </div> 
