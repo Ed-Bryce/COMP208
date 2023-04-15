@@ -11,7 +11,7 @@
         exit();
     }
 
-    $sql = "SELECT * FROM chessdb.users WHERE username = ? OR email = ?";
+    $sql = "SELECT * FROM chessdb.Users WHERE username = ? OR email = ?";
     $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)){
             echo "<p> statement error </p>";
@@ -33,7 +33,7 @@
                 }
             }else{
                 echo "<p> checks passed </p>";
-                $sql = "INSERT INTO chessdb.users (username, email, password) VALUES (?, ?, ?)";
+                $sql = "INSERT INTO chessdb.Users (username, email, password) VALUES (?, ?, ?)";
                 $stmt = mysqli_stmt_init($conn);
                 if (!mysqli_stmt_prepare($stmt, $sql)){
                     echo "<p> statement error </p>";
