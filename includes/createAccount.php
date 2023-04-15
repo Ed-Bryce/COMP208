@@ -43,7 +43,8 @@
                 mysqli_stmt_bind_param($stmt, "sss", $username, $email, $passwordHash);
                 mysqli_stmt_execute($stmt);
                 //returns back to login page
-                require "../login.php";
+                header("Location: ../login.php");
+                exit();
             }
         }
     }
