@@ -3,7 +3,7 @@
     require "dbConnection.php";
     $email = $_POST["email"];
     $password = $_POST["password"];
-    $sql = "SELECT * FROM chessdb.users WHERE email=?;";
+    $sql = "SELECT * FROM chessdb.Users WHERE email=?;";
     echo "<p>" . $email . "</p>";
     $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)){
