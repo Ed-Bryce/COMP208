@@ -25,7 +25,7 @@
                     <div class = "d-flex justify-content-center">
                         <h3>Reset password</h3> 
                     </div>
-                    <form action="includes/loginVerify.php" class="needs-validation" method="post">
+                    <form  class="needs-validation" method="post">
                         <div class="form-floating mb-3 mt-3">
                             <input type="text" class="form-control" id="email" placeholder="Enter email" name="email"  required>
                             <label for="email">Email</label>
@@ -33,7 +33,7 @@
                             <div class="invalid-feedback">Please enter your username.</div>
                         </div>
                         <div class="d-grid">
-                            <button class="btn btn-outline-dark" type="submit">Login</button>
+                            <button class="btn btn-outline-dark" type="submit">Submit</button>
                         </div>
                     </form> 
                 </div>
