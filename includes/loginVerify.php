@@ -13,11 +13,9 @@
         $result = mysqli_stmt_get_result($stmt);
         if($row = mysqli_fetch_assoc($result)){
             if (password_verify($password, $row["password"])) {
-                echo 'Password is valid!';
                 $_SESSION["logged_in"] = "true";
                 $_SESSION["failed"] = "false";
                 $_SESSION["userID"] = $row["userID"];
-                echo "<script>alert('data saved succesfully');</script>";
                 header("Location: ../board.php");
                 exit;
             }
