@@ -12,25 +12,25 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body style = "background-color: #2C3289;">
+<body style = "background-color: #2b2826;">
     <!-- Nav Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark shadow-lg">
+        <div class="container justify-content-start">
             <button type="button" class="btn btn-secondary" data-bs-toggle="offcanvas" data-bs-target="#menu">Menu</button>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="board.php">Play</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="social.php">Friends</a>
-                    </li>
-                </ul>
-                <a href="login.php" class="btn btn-outline-danger" type="submit">Log Out</a>
-            </div>     
+            <ul class="navbar-nav pl-3">
+                <li class="nav-item">
+                    <a class="nav-link active" href="board.php">Play</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="social.php">Friends</a>
+                </li>
+            </ul>
+        </div>
+        <div class="container-fluid justify-content-center">
+            <span class="navbar-brand">Chess Game</span>
+        </div>
+        <div class="container justify-content-end">
+            <a href="login.php" class="btn btn-danger" role="button">Logout</a>
         </div>
     </nav>
 
@@ -45,18 +45,25 @@
         </div>
         <div class="offcanvas-body">
         
-        <!-- sidebar body -->
-
+            <!-- sidebar body -->
+            <!-- Change pwd button -->
+            <div>
+                <li class="nav-item">
+                    <ul>
+                        <a class="nav-link" href="changePassword.php">Change password</a>
+                    </ul>
+                </li>
+            </div>
         </div>
     </div>
 
     <!-- Body   ratio ratio-1x1-->
     <div class="row">
-
+    
         <!-- Game Info -->
-        <div class = "container m-10 border col-3 shadow-lg" style="background-color:#212529;  margin-top: 60px">
+        <div class = "container m-10 border col-3 shadow-lg" style="background-color:#333;  margin-top: 60px; border-radius: 25px">
             <div style="color:white">
-                <h3 class="m-1" style="text-align:center">Game Info</h3>
+                <h3 class="m-1" style="text-align:center; font-family: Futura">Game Info</h3>
             </div> 
         </div>
 
@@ -64,7 +71,6 @@
         <div class="container d-flex align-items-center border shadow-lg" style="width: 48%; height: 80vh; margin-top: 60px">
             <p style="color: white;">add board here</p>
         </div>
-    </div>
     </div>
 </body>
 </html>
