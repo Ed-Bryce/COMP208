@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $_SESSION["logged_in"] = "false";
+    if ($_SESSION["failed"])
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +47,8 @@
                     </div>
                     <div class="d-grid">
                         <button class="btn btn-outline-dark" type="submit">Login</button>
-                    </div>
+                        <?php if ($_SESSION["failed"] == "true") echo '<span style = "color:red"><center><b> Unable to sign in, please try again </b></center></span style>' ?>
+
                     <div class = "pt-3 d-flex justify-content-center">
                         <p class="mb-0  text-center">Don't have an account? <a href="signup.php" class="text-primary fw-bold">Sign Up</a></p>
                     </div>
