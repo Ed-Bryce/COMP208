@@ -32,17 +32,17 @@
                         </div>
                         <!--Current pwd -->
                         <div class="form-floating mb-3 mt-3">
-                            <input type="text" class="form-control" id="currentPwd" placeholder="Enter current password" name="currentPwd"  required>
+                            <input type="password" class="form-control" id="currentPwd" placeholder="Enter current password" name="currentPwd"  required>
                             <label for="email">Current Password</label>
                         </div>
                         <!-- New password -->
                         <div class="form-floating mb-3 mt-3">
-                            <input type="text" class="form-control" id="newPwd1" placeholder="Enter new password" name="newPwd1"  required>
+                            <input type="password" class="form-control" id="newPwd1" placeholder="Enter new password" name="newPwd1"  required>
                             <label for="email">New Password</label>
                         </div>
                         <!-- New password repeated -->
                         <div class="form-floating mb-3 mt-3">
-                            <input type="text" class="form-control" id="newPwd2" placeholder="reEnter new password" name="newPwd2"  required>
+                            <input type="password" class="form-control" id="newPwd2" placeholder="reEnter new password" name="newPwd2"  required>
                             <label for="email">New Password</label>
                         </div>
                         <!--Update button -->

@@ -33,7 +33,7 @@
                 <form action="includes/createAccount.php" class="was-validated" method="post">
                     <div class="mb-3 mt-3">
                         <label for="username" class="form-label">Username:</label>
-                        <input type="username" class="form-control" id="username" placeholder="Enter username" name="username" required>
+                        <input type="text" class="form-control" id="username" placeholder="Enter username" name="username" required>
                         <div class="invalid-feedback">Please enter a username</div>
                     </div>
                     <div class="mb-3 mt-3">
@@ -43,12 +43,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password:</label>
-                        <input type="new-password" class="form-control" id="password" placeholder="Enter password" name="password" required>
+                        <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" required>
                         <div class="invalid-feedback">Please enter a password.</div>
                     </div>
                     <div class="mb-3">
                         <label for="passwordConfirm" class="form-label">Confirm Password:</label>
-                        <input type="new-password" class="form-control" id="passwordConfirm" placeholder="Re-enter password" name="passwordConfirm" required>
+                        <input type="password" class="form-control" id="passwordConfirm" placeholder="Re-enter password" name="passwordConfirm" required>
                         <div class="invalid-feedback">Please re-enter your password.</div>
                     </div>
                     <div class="d-grid pt-2">

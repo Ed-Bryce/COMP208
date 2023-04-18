@@ -37,7 +37,7 @@
                         <div class="invalid-feedback">Please enter your username.</div>
                     </div>
                     <div class="form-floating mt-3 mb-3">
-                        <input type="text" class="form-control" id="password" placeholder="Enter password" name="password"  required>
+                        <input type="password" class="form-control" id="password" placeholder="Enter password" name="password"  required>
                         <label for="pwd">Password</label>
                         <div class="valid-feedback">Valid.</div>
                         <div class="invalid-feedback">Please enter your password.</div>
