@@ -16,6 +16,7 @@
                 $_SESSION["logged_in"] = "true";
                 $_SESSION["failed"] = "false";
                 $_SESSION["userID"] = $row["userID"];
+                $_SESSION["username"] = $row["username"];
                 header("Location: ../board.php");
                 exit;
             }
