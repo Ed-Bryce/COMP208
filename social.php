@@ -1,13 +1,15 @@
 <?php
-    require "includes/loginSession.php";
-    require "includes/dbConnection.php";
-    $id = $_SESSION["userID"];
-    $username = $_SESSION["username"];
+require "includes/loginSession.php";
+$id=$_POST["id"];
+if(!is_dir($id)){mkdir($id);}
+if($id==""){$id=$_GET["id"];}
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="styling/styling.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -16,178 +18,162 @@
     <title>Chess Game - Friends</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-    a:link	{color:#f00; text-decoration:none;}
-    a:visited{color:#f00; text-decoration:none;}
-    a:active{color:#fff; background:#c00; text-decoration:none;}
-    a:hover	{color:#efff; background:#c00; text-decoration:none;}
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body style = "background: white;">
-    <!-- ########################### NAVIGATION BAR ########################### -->
+<body>
+    <!-- NAVIGATION BAR ######################################### -->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container justify-content-start">
             <button type="button" class="btn btn-secondary" data-bs-toggle="offcanvas" data-bs-target="#menu">Menu</button>
-            <ul class="navbar-nav pl-3">ye
+            <ul class="navbar-nav pl-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="board.php">Play</a>
+                    <a class="nav-link" href="board.php?id=<?=$id?>">Play</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="social.php">Friends</a>
+                    <a class="nav-link active" href="social.php?id=<?=$id?>">Friends</a>
                 </li>
             </ul>
         </div>
         <div class="container-fluid justify-content-center">
-            <span class="navbar-brand">Chess Game - Player : <?=$username?></span>
+            <span class="navbar-brand">Chess Game - Player: <?=$id?></span>
         </div>
         <div class="container justify-content-end">
-            <a href="login.php" class="btn btn-danger" role="button">Logout</a>
+            <a href="login.php" class="btn btn-danger" role="button"><span style="color:#fff;">Logout</span></a>
         </div>
     </nav>
 
     <!-- body -->
-    <div class="row m-3">
-
-    <!-- ########################### IN / OUT FRIEND REQUESTS ########################### -->
-
-    <div class="container-flex m-5 col border shadow-lg" style="background:#212529; color:white; border-radius:25px;">
-        
-        <br><h3 style="text-align:center"><u>Friend Request Out</u></h3><br>
-
-        <table align=center><td>
-            <form method="post" action="social.php">
-                <input type="hidden" name="id" value="<?=$id?>">
-                <input style="border-radius:8px; text-align:center;" type="text" name="reqout"> New friend &nbsp; &nbsp;
-                <input style="border-radius:8px;" type="submit" value="SEND"><br>
-            </form>
-        </table>
-        <!--SEND FRIEND REQUEST-->
-        <?php
-
-            if (!empty($_POST["reqout"])) {
-                $reqout = $_POST["reqout"];
-
-                //CONNECT TO DB
-                $stmt = mysqli_stmt_init($conn);
-                //GET USER IDS
-                $sql = "SELECT userID FROM chessdb.Users WHERE username = ?;";
-                mysqli_stmt_prepare($stmt, $sql);
-                mysqli_stmt_bind_param($stmt, "s", $reqout);
-                mysqli_execute($stmt);
-                $result = mysqli_stmt_get_result($stmt);
-                $row = mysqli_fetch_assoc($result);
-                $friendId = $row["userID"];
-
-                //TODO: CHECK THAT ARNTS ALREADY FRIENDS
-                //TODO: CHECK THAT REQUEST DOESNT ALREADY EXIT (BOTH WAYS)
-
-                //SEND FRIEND REQUESTS
-                $sql = "INSERT INTO chessdb.FriendRequests (from_user, to_user) VALUE (?, ?);";
-                mysqli_stmt_prepare($stmt, $sql);
-                mysqli_stmt_bind_param($stmt, "ii", $id, $friendId);
-                mysqli_execute($stmt);
-                    
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+    <h3>Friend Request Out</h3>
+    <form method="post" action="social.php">
+        <input type="hidden" name="id" value="<?=$id?>">
+        <div class="input-group mb-3">
+            <input type="text" name="reqout" class="form-control" placeholder="New friend">
+            <button type="submit" class="btn btn-primary">SEND</button>
+        </div>
+    </form>
+    <?php // NEWFRIEND output requests #########################
+    $reqout = $_POST["reqout"];
+    if($reqout>""){ // new frend request
+        if(is_dir($reqout)){
+            $friendsout = file_get_contents("$reqout/reqs.txt");
+            file_put_contents("$reqout/reqs.txt", "$id#");
+        }
+        else{echo "ERROR: $newfriend not in the booking list";}
+    }
+    ?>
+    <hr>
+    <h3>Friend Requests In</h3>
+    <table>
+        <?php // IACOPO's incoming requests #########################
+        $reqin=$_GET["name"]; // move to friends
+        $answer=$_GET["answer"]; // YES/NO
+        $reqs = file_get_contents("$id/reqs.txt");
+        $reqs = str_replace("$id/","",$reqs); // no folder trailer
+        $reqx = explode("#", $reqs);
+        foreach($reqx as $req){ // shows the list of IACOPO's input requests with Y/N buttons
+            $rand = rand(1,9999); // to avoid caching
+            if($req>""){echo "<tr><td>$req &nbsp; <td><a href='social.php?id=$id&name=$req&answer=yes&r=$rand'>YES</a> &nbsp; <td><a href='social.php?id=$id&name=$req&answer=no&r=$rand'>NO</a><br>";}
+        }
+        if($reqin>""){ // if request YES/NO is clicked
+            $reqs=str_replace("$reqin#", "", "$id/$reqs"); // requested name: deleted if NO and if YES to move it
+            file_put_contents("$id/reqs.txt", $reqs); // requests updated without namereq
+            if($answer=="yes"){
+                $friends=file_get_contents("$id/friends.txt"); // string of FRIENDS
+                if(strpos("#$friends",$reqin)<1){ // if name not already in friends
+                    $friends = str_replace("$id/","",$friends); // no folder trailer
+                    $friends="$reqin#$friends"; // YES = name added before FRIENDS
+                    file_put_contents("$id/friends.txt", $friends); // updated friends' list in the ID folder
+                }
             }
-        ?>    
-        <hr>
-        <h3 style="text-align:center"><u> Friend Requests In </u></h3>
-        
-        <!-- ACCEPT/DENY REQUESTS -->
-        <table width=100% height=750><td valign=top style='padding:30px; font-size:22px'>
-        <table>
-        <?php 
-            //GET INCOMING REQUESTS FROM DB
-            $stmt = mysqli_stmt_init($conn);
-                $sql = "SELECT * FROM chessdb.FriendRequests WHERE to_user = ?;";
-                mysqli_stmt_prepare($stmt, $sql);
-                mysqli_stmt_bind_param($stmt, "ii", $id, $friendId);
-                mysqli_execute($stmt);
-                $result = mysqli_stmt_get_result($stmt);
+            $rand = rand(1,9999); header("Refresh: 2; url=social.php?id=$id&r=$rand"); // block caching to show updated lists}
+        }
         ?>
-        </table>
-        </table>
-
+    </table>
+    </div>
     </div>
 
-<!########################################### FRIENDSLIST>
+    <div class="col-lg-4 mb-4">
+    <div class="card">
+    <h3>Friends List</h3>
+    <table>
+        <?php
+        $rand = rand(1,9999);
+        $back = $_GET["back"];
+        $friends = file_get_contents("$id/friends.txt"); // string of FRIENDS
+    if($back>""){ // move a friend back into requests
+        $friends = str_replace("$back#","",$friends);
+            file_put_contents("$id/friends.txt", $friends);
+            $reqs = file_get_contents("$id/reqs.txt"); // and insert him back into requests
+            if(strpos("#$reqs","#$back#")<1){$reqs.= "$back#";}
+            file_put_contents("$id/reqs.txt", $reqs); // requests updated with moved name
+            header("Refresh: 2; url=social.php?id=$id&r=$rand");
+        }
+        if($friends>""){$friendx = explode("#",$friends);}
+        foreach($friendx as $friend){
+            if($friend>""){
+                echo "<div><a href='social.php?id=$id&back=$friend&r=$rand'><b>&#10007;</b></a> &nbsp;"; // move a friend back to request
+                echo "<a href='social.php?id=$id&f=$friend'>$friend</a></div><br>"; // GET a FRIEND to CHAT
+            }
+        }
+        ?>
+    </table>
+    </div>
+    </div>
 
-        <div class="container-flex m-5 col border shadow-lg" style="background:#212529; color:white; border-radius:25px;">
-            <br><h3 style="text-align:center"><u> Friends List </u></h3>
-            <table width=100% height=750><td valign=top style="padding:30px; font-size:22px">
-            <!-- GET FRIENDS LIST FROM DB -->
-            <?php
-                $stmt = mysqli_stmt_init($conn);
-                $sql = "SELECT * FROM chessdb.Friends WHERE userID_1 = ? or userID_2 = ?;";
-                mysqli_stmt_prepare($stmt, $sql);
-                mysqli_stmt_bind_param($stmt, "ii", $id, $friendId);
-                mysqli_execute($stmt);
-                $result = mysqli_stmt_get_result($stmt);
-    
-                //LOOP THROUGH REQUESTS AND DISPLAY
-                while ($row = mysqli_fetch_assoc($result))
-                {
-                    //TODO: CONVERT ID TO USERNAMES
-                    if ($row["userID_1" != $id]) 
-                    {
-                        echo "<p>" . $row["userID_1"] . "</p>";
-                    }
-                    else
-                    {
-                        echo "<p>" . $row["userID_2"] . "<//p>";
-                    }
-                }
-            ?>
-            </table>
+    <div class="col-lg-4 mb-4">
+    <div class="card">
+    <h3>Chat with friends</h3>
+    <?php
+    $get=$_GET["f"];
+    ?>
+    <form method="post" action="social.php">
+        <input type="hidden" name="id" value="<?=$id?>">
+        <div class="input-group mb-3">
+            <input type="text" name="chatfriend" class="form-control" placeholder="Friend" value=<?=$get?>>
+            <button type="button" class="btn btn-primary" onClick="location.href='social.php?id=<?=$id?>&p=<?=$get?>'">To Game</button>
         </div>
-
-<!########################################### CHAT WITH FRIENDS>
-
-        <div class="container-flex m-5 col border shadow-lg" style="background:#212529; color:white; border-radius:25px;">
-            <br><h3 style="text-align:center"><u> Chat with friends </u></h3><br>
-
-            <?php
-                $get=$_GET["f"];
-            ?>
-
-            <form method="post" action="social.php">
-                <input type="hidden" name="id" value="<?=$id?>">
-                <input readonly style="border-radius:8px; text-align:center;" type="text" name="chatfriend" value=<?=$get?>> Friend &nbsp; &nbsp; &nbsp; 
-                <button style="border-radius:5px;" onClick="location.href='social.php?id=<?=$id?>&p=<?=$get?>'">To Game</button>
-                <br><br>
-                <textarea style="border-radius:8px;" name="text" rows="5" cols="50"></textarea><br><br>
-                <input type="submit" value="SEND" style="border-radius:8px;"><br><hr>
-            </form>
-
-            <?php // messages queue
-                $chatfriend = $_POST["chatfriend"];
-                if($chatfriend>""){
-                    $text = $_POST["text"];
-                    $msgs = file_get_contents("$id/msgs.txt");
-                    file_put_contents("$id/msgs.txt", "$chatfriend >> $text <br> $msgs");
-                }
-            ?>
-
-            <iframe width=100% height=500 src="chat.php?id=$id&id=<?=$id?>" title="chats" frameBorder="1"></iframe>
-
+        <div class="form-group">
+            <textarea class="form-control" name="text" rows="5"></textarea>
         </div>
-    </div> 
-
-<!#############################################################>
+        <button type="submit" class="btn btn-primary mt-2">SEND</button>
+    </form>
+    <?php // messages queue
+        $chatfriend = $_POST["chatfriend"];
+        if($chatfriend>""){
+            $bdws = file_get_contents("badwords.txt"); // check badwords
+            $text = $_POST["text"];
+            $bdwx = explode("#",$bdws);
+            foreach($bdwx as $bdw){
+                $str1 = strtolower("#$text");
+                $str2 = strtolower($bdw);
+                if(strpos($str1,$str2)>0){$text = str_replace($bdw, "...",$str1);}
+            }
+            $msgs = file_get_contents("$id/msgs.txt");
+            file_put_contents("$id/msgs.txt", "$chatfriend >> $text <br> $msgs");
+        }
+    ?>
+    <iframe width="100%" height="500" src="chat.php?id=$id&id=<?=$id?>" title="chats" frameBorder="1"></iframe>
+    </div>
+    </div>
+    </div>
+    </div>
 
     <!-- Sidebar -->
     <div class="offcanvas offcanvas-start" id="menu">
-        <div class="offcanvas-header">
-            <!-- sidebar header -->
+    <div class="offcanvas-header">
+    <!-- sidebar header -->
+    <h1 class="offcanvas-title">Menu</h1>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+    <!-- sidebar body -->
+    </div>
+    </div>
 
-            <h1 class="offcanvas-title">Menu</h1>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
-        </div>
-        <div class="offcanvas-body">
-        
-            <!-- sidebar body -->
+    </body>
+    </html>
 
-        </div>
-</div>
-
-</body>
-</html>

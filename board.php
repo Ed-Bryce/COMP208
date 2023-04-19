@@ -1,5 +1,5 @@
 <?php
-    require "includes/loginSession.php";
+    //require "includes/loginSession.php";
 ?>
 
 <!DOCTYPE html>
@@ -11,32 +11,28 @@
     <title>Chess Game - Play</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-        a:link	{color:#f00; text-decoration:none;}
-        a:visited{color:#f00; text-decoration:none;}
-        a:active{color:#fff; background:#c00; text-decoration:none;}
-        a:hover	{color:#efff; background:#c00; text-decoration:none;}
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body style = "background-color: white;">
     <!-- Nav Bar -->
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <!-- NAVIGATION BAR ######################################### -->
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container justify-content-start">
             <button type="button" class="btn btn-secondary" data-bs-toggle="offcanvas" data-bs-target="#menu">Menu</button>
-            <ul class="navbar-nav pl-3">ye
+            <ul class="navbar-nav pl-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="board.php">Play</a>
+                    <a class="nav-link" href="board.php?id=<?=$id?>">Play</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="social.php">Friends</a>
+                    <a class="nav-link active" href="social.php?id=<?=$id?>">Friends</a>
                 </li>
             </ul>
         </div>
         <div class="container-fluid justify-content-center">
-            <span class="navbar-brand">Chess Game<?=$id?></span>
+            <span class="navbar-brand">Chess Game - Player: <?=$id?></span>
         </div>
         <div class="container justify-content-end">
-            <a href="login.php" class="btn btn-danger" role="button">Logout</a>
+            <a href="login.php" class="btn btn-danger" role="button"><span style="color:#fff;">Logout</span></a>
         </div>
     </nav>
 
