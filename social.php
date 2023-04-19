@@ -173,7 +173,7 @@
     <form method="post" action="includes/sendMessage.php">
         <input type="hidden" name="id" value="<?=$id?>">
         <div class="input-group mb-3">
-            <input type="text" name="chatfriend" class="form-control" placeholder="Friend" value=<?=$friendUsername?>>
+            <input type="text" name="chatfriend" class="form-control" placeholder="Friend" value=<?=$friendUsername?> readonly>
             <button type="button" class="btn btn-primary" onClick="location.href='social.php?id=<?=$id?>&p=<?=$get?>'">To Game</button>
         </div>
         <div class="form-group">
