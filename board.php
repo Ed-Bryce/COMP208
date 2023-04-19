@@ -1,11 +1,7 @@
 <?php
-<<<<<<< HEAD
-    require "includes/loginSession.php";
-=======
     session_start();
     //require "includes/loginSession.php";
     $username = $_SESSION["username"];
->>>>>>> f1827da568d7196eead4fb7e64511811cc416ad2
 ?>
 
 <!DOCTYPE html>
