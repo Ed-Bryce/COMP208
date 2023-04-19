@@ -1,12 +1,11 @@
 <?php
     session_start();
-    $_SESSION["logged_in"] = "false";
+    if ($_SESSION["failed"])
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="styling/styling.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Chess Game - Login</title>
@@ -38,7 +37,7 @@
                         <div class="invalid-feedback">Please enter your username.</div>
                     </div>
                     <div class="form-floating mt-3 mb-3">
-                        <input type="text" class="form-control" id="password" placeholder="Enter password" name="password"  required>
+                        <input type="password" class="form-control" id="password" placeholder="Enter password" name="password"  required>
                         <label for="pwd">Password</label>
                         <div class="valid-feedback">Valid.</div>
                         <div class="invalid-feedback">Please enter your password.</div>
@@ -48,7 +47,8 @@
                     </div>
                     <div class="d-grid">
                         <button class="btn btn-outline-dark" type="submit">Login</button>
-                    </div>
+                        <?php if ($_SESSION["failed"] == "true") echo '<span style = "color:red"><center><b> Unable to sign in, please try again </b></center></span style>' ?>
+
                     <div class = "pt-3 d-flex justify-content-center">
                         <p class="mb-0  text-center">Don't have an account? <a href="signup.php" class="text-primary fw-bold">Sign Up</a></p>
                     </div>
