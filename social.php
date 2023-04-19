@@ -1,9 +1,8 @@
 <?php
-require "includes/loginSession.php";
-$id=$_POST["id"];
-if(!is_dir($id)){mkdir($id);}
-if($id==""){$id=$_GET["id"];}
-
+    require "includes/loginSession.php";
+    require "includes/dbConnection.php";
+    $id = $_SESSION["userID"];
+    $username = $_SESSION["username"];
 ?>
 
 <!DOCTYPE html>
@@ -55,71 +54,110 @@ if($id==""){$id=$_GET["id"];}
             <button type="submit" class="btn btn-primary">SEND</button>
         </div>
     </form>
-    <?php // NEWFRIEND output requests #########################
-    $reqout = $_POST["reqout"];
-    if($reqout>""){ // new frend request
-        if(is_dir($reqout)){
-            $friendsout = file_get_contents("$reqout/reqs.txt");
-            file_put_contents("$reqout/reqs.txt", "$id#");
+    <!--SEND FRIEND REQUEST-->
+    <?php
+        if (!empty($_POST["reqout"])) {
+            $reqout = $_POST["reqout"];
+
+            //CONNECT TO DB
+            $stmt = mysqli_stmt_init($conn);
+            //GET USER IDS
+            $sql = "SELECT userID FROM chessdb.Users WHERE username = ?;";
+            mysqli_stmt_prepare($stmt, $sql);
+            mysqli_stmt_bind_param($stmt, "s", $reqout);
+            mysqli_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            $row = mysqli_fetch_assoc($result);
+            $friendId = $row["userID"];
+
+            //TODO: CHECK THAT ARNTS ALREADY FRIENDS
+            //TODO: CHECK THAT REQUEST DOESNT ALREADY EXIT (BOTH WAYS)
+
+            //SEND FRIEND REQUESTS
+            $sql = "INSERT INTO chessdb.FriendRequests (from_user, to_user) VALUE (?, ?);";
+            mysqli_stmt_prepare($stmt, $sql);
+            mysqli_stmt_bind_param($stmt, "ii", $id, $friendId);
+            mysqli_execute($stmt);      
         }
-        else{echo "ERROR: $newfriend not in the booking list";}
-    }
-    ?>
+        ?>    
     <hr>
     <h3>Friend Requests In</h3>
     <table>
-        <?php // IACOPO's incoming requests #########################
-        $reqin=$_GET["name"]; // move to friends
-        $answer=$_GET["answer"]; // YES/NO
-        $reqs = file_get_contents("$id/reqs.txt");
-        $reqs = str_replace("$id/","",$reqs); // no folder trailer
-        $reqx = explode("#", $reqs);
-        foreach($reqx as $req){ // shows the list of IACOPO's input requests with Y/N buttons
-            $rand = rand(1,9999); // to avoid caching
-            if($req>""){echo "<tr><td>$req &nbsp; <td><a href='social.php?id=$id&name=$req&answer=yes&r=$rand'>YES</a> &nbsp; <td><a href='social.php?id=$id&name=$req&answer=no&r=$rand'>NO</a><br>";}
-        }
-        if($reqin>""){ // if request YES/NO is clicked
-            $reqs=str_replace("$reqin#", "", "$id/$reqs"); // requested name: deleted if NO and if YES to move it
-            file_put_contents("$id/reqs.txt", $reqs); // requests updated without namereq
-            if($answer=="yes"){
-                $friends=file_get_contents("$id/friends.txt"); // string of FRIENDS
-                if(strpos("#$friends",$reqin)<1){ // if name not already in friends
-                    $friends = str_replace("$id/","",$friends); // no folder trailer
-                    $friends="$reqin#$friends"; // YES = name added before FRIENDS
-                    file_put_contents("$id/friends.txt", $friends); // updated friends' list in the ID folder
+        <?php 
+                //GET INCOMING REQUESTS FROM DB
+                $stmt = mysqli_stmt_init($conn);
+                $sql = "SELECT username, userID 
+                        FROM chessdb.Users, chessdb.FriendRequests 
+                        WHERE chessdb.FriendRequests.to_user = ? AND chessdb.Users.userID = chessdb.FriendRequests.from_user;";
+                mysqli_stmt_prepare($stmt, $sql);
+                mysqli_stmt_bind_param($stmt, "i", $id);
+                mysqli_execute($stmt);
+                $results = mysqli_stmt_get_result($stmt);
+
+                while ($row = mysqli_fetch_assoc($results)) {
+                    $friendReqId = $row["userID"];
+                    $yes = True;
+                    $no = False;
+                    echo "<p>" . $row["username"] . " <a href='social.php?accept=$yes&friendReqId=$friendReqId'>YES</a> <a href='social.php?accept=$no&friendReqId=$friendReqId'>NO</a> <p>";
                 }
-            }
-            $rand = rand(1,9999); header("Refresh: 2; url=social.php?id=$id&r=$rand"); // block caching to show updated lists}
-        }
-        ?>
+
+                //RESPONSE
+                
+                if(isset($_GET['accept']) && isset($_GET['friendReqId']))
+                {
+                    $RespAns = $_GET["accept"];
+                    $RespId = $_GET["friendReqId"];
+                    //ACCEPT
+                    if ($RespAns == True)
+                    {
+                        //ADD TO DB
+                        $sql = "INSERT INTO chessdb.Friends (userID_1, userID_2) VALUES (?,?);";
+                        mysqli_stmt_prepare($stmt, $sql);
+                        mysqli_stmt_bind_param($stmt, "ii", $id, $RespId);
+                        mysqli_execute($stmt);
+                    }
+                    //REMOVE FROM FRIEND REQUESTS
+                    $sql = "DELETE FROM FriendRequests WHERE (to_user = ? AND from_user = ?) OR (to_user = ? AND from_user = ?);";
+                        mysqli_stmt_prepare($stmt, $sql);   
+                        mysqli_stmt_bind_param($stmt, "iiii", $id, $RespId, $RespId, $id);
+                        mysqli_execute($stmt);
+                        //RESET URL
+                    Header("Location: social.php");
+                }
+                
+            ?>
     </table>
     </div>
     </div>
 
     <div class="col-lg-4 mb-4">
     <div class="card">
-    <h3>Friends List</h3>
-    <table>
-        <?php
-        $rand = rand(1,9999);
-        $back = $_GET["back"];
-        $friends = file_get_contents("$id/friends.txt"); // string of FRIENDS
-    if($back>""){ // move a friend back into requests
-        $friends = str_replace("$back#","",$friends);
-            file_put_contents("$id/friends.txt", $friends);
-            $reqs = file_get_contents("$id/reqs.txt"); // and insert him back into requests
-            if(strpos("#$reqs","#$back#")<1){$reqs.= "$back#";}
-            file_put_contents("$id/reqs.txt", $reqs); // requests updated with moved name
-            header("Refresh: 2; url=social.php?id=$id&r=$rand");
-        }
-        if($friends>""){$friendx = explode("#",$friends);}
-        foreach($friendx as $friend){
-            if($friend>""){
-                echo "<div><a href='social.php?id=$id&back=$friend&r=$rand'><b>&#10007;</b></a> &nbsp;"; // move a friend back to request
-                echo "<a href='social.php?id=$id&f=$friend'>$friend</a></div><br>"; // GET a FRIEND to CHAT
-            }
-        }
-        ?>
+        <h3>Friends List</h3>
+            <table>
+                <!-- GET FRIENDS LIST FROM DB -->
+                <?php
+                    $stmt = mysqli_stmt_init($conn);
+                    $sql = "SELECT userID, username
+                    FROM chessdb.Friends, chessdb.Users
+                    WHERE (chessdb.Friends.userID_1 = ? OR chessdb.Friends.userID_2 = ?) 
+                    AND (chessdb.Users.userID = chessdb.Friends.userID_1 OR chessdb.Users.userID = chessdb.Friends.userID_2);";
+                    mysqli_stmt_prepare($stmt, $sql);
+                    mysqli_stmt_bind_param($stmt, "ii", $id, $id);
+                    mysqli_execute($stmt);
+                    $result = mysqli_stmt_get_result($stmt);
+
+                    //LOOP THROUGH REQUESTS AND DISPLAY
+                    while ($row = mysqli_fetch_assoc($result))
+                    {
+                        if ($row["userID"] != $id) {
+                            $friendId = $row["userID"];
+                            $friendUsername = $row["username"];
+                            echo "<p><a href='social.php?friend=$friendUsername&id=$friendId'>".$friendUsername."</a></p>";
+                        }
+                    }
+                ?>
+            </table>
+        </div>
     </table>
     </div>
     </div>
@@ -128,8 +166,9 @@ if($id==""){$id=$_GET["id"];}
     <div class="card">
     <h3>Chat with friends</h3>
     <?php
-    $get=$_GET["f"];
-    ?>
+                $friend=$_GET["friend"];
+                $friendID = $_GET["id"]
+            ?>
     <form method="post" action="social.php">
         <input type="hidden" name="id" value="<?=$id?>">
         <div class="input-group mb-3">
@@ -141,21 +180,41 @@ if($id==""){$id=$_GET["id"];}
         </div>
         <button type="submit" class="btn btn-primary mt-2">SEND</button>
     </form>
-    <?php // messages queue
-        $chatfriend = $_POST["chatfriend"];
-        if($chatfriend>""){
-            $bdws = file_get_contents("badwords.txt"); // check badwords
-            $text = $_POST["text"];
-            $bdwx = explode("#",$bdws);
-            foreach($bdwx as $bdw){
-                $str1 = strtolower("#$text");
-                $str2 = strtolower($bdw);
-                if(strpos($str1,$str2)>0){$text = str_replace($bdw, "...",$str1);}
-            }
-            $msgs = file_get_contents("$id/msgs.txt");
-            file_put_contents("$id/msgs.txt", "$chatfriend >> $text <br> $msgs");
-        }
-    ?>
+    <?php //SEND MESSAGE
+
+                if (!empty($msgStr = $_POST["textbox"]))
+                {
+                    $mysqltime = date ('Y-m-d H:i:s');
+
+                    $stmt = mysqli_stmt_init($conn);
+                    $sql = "INSERT INTO chessdb.Messages (`UserID-From`, `userId-To`, messageContent, dateSent) VALUES (?,?,?,?);";
+                    mysqli_stmt_prepare($stmt, $sql);
+                    $temp = "date";
+                    mysqli_stmt_bind_param($stmt, "iiss", $id, $friendId, $msgStr, $mysqltime);
+                    mysqli_execute($stmt);
+
+                }
+                
+                //DISPLAY MESSSAGES
+                $chatfriend = $_GET["friend"];
+                
+                    $stmt = mysqli_stmt_init($conn);
+                    $sql = "SELECT * 
+                            FROM chessdb.Messages 
+                            WHERE (`UserID-From` = ? and `UserID-To` = ?) or (`UserID-From` = ? and `UserID-To` = ?)
+                            ORDER BY dateSent;";
+                    mysqli_stmt_prepare($stmt, $sql);
+                    mysqli_stmt_bind_param($stmt, "iiii", $id, $friendID, $friendID, $id);
+                    mysqli_execute($stmt);
+                    $results = mysqli_stmt_get_result($stmt);
+                    while ($row = mysqli_fetch_assoc($results))
+                    {
+                       
+                        //display chat
+                        echo "<p>" . $row["dateSent"] . " : " . $row["messageContent"] . "</p>";
+                    }
+                    
+            ?>
     <iframe width="100%" height="500" src="chat.php?id=$id&id=<?=$id?>" title="chats" frameBorder="1"></iframe>
     </div>
     </div>
