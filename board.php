@@ -1,5 +1,5 @@
 <?php
-    //require "includes/loginSession.php";
+    require "includes/loginSession.php";
 ?>
 
 <!DOCTYPE html>
