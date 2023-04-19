@@ -230,6 +230,7 @@
     </div>
     <div class="offcanvas-body">
     <!-- sidebar body -->
+        <a type="button" class="btn" href="changePassword.php">Change Password</a>
     </div>
     </div>
 
