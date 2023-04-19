@@ -1,5 +1,7 @@
 <?php
+    session_start();
     //require "includes/loginSession.php";
+    $username = $_SESSION["username"];
 ?>
 
 <!DOCTYPE html>
@@ -21,15 +23,15 @@
             <button type="button" class="btn btn-secondary" data-bs-toggle="offcanvas" data-bs-target="#menu">Menu</button>
             <ul class="navbar-nav pl-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="board.php?id=<?=$id?>">Play</a>
+                    <a class="nav-link active" href="board.php?id=<?=$id?>">Play</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="social.php?id=<?=$id?>">Friends</a>
+                    <a class="nav-link" href="social.php?id=<?=$id?>">Friends</a>
                 </li>
             </ul>
         </div>
         <div class="container-fluid justify-content-center">
-            <span class="navbar-brand">Chess Game - Player: <?=$id?></span>
+            <span class="navbar-brand">Chess Game - Player: <?=$username?></span>
         </div>
         <div class="container justify-content-end">
             <a href="login.php" class="btn btn-danger" role="button"><span style="color:#fff;">Logout</span></a>
@@ -41,13 +43,14 @@
         <div class="offcanvas-header">
         <!-- sidebar header -->
 
-        <h1 class="offcanvas-title">Menu</h1>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+            <h1 class="offcanvas-title">Menu</h1>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
 
         </div>
         <div class="offcanvas-body">
-        
         <!-- sidebar body -->
+
+            <a type="button" class="btn" href="changePassword.php">Reset Password</a>
 
         </div>
     </div>
