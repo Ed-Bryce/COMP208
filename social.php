@@ -152,6 +152,7 @@
                         if ($row["userID"] != $id) {
                             $friendId = $row["userID"];
                             $friendUsername = $row["username"];
+                            $_SESSION["friendID"] = $friendId;
                             echo "<p><a href='social.php?friend=$friendUsername&id=$friendId'>".$friendUsername."</a></p>";
                         }
                     }
@@ -169,50 +170,21 @@
                 $friend=$_GET["friend"];
                 $friendID = $_GET["id"]
             ?>
-    <form method="post" action="social.php">
+    <form method="post" action="includes/sendMessage.php">
         <input type="hidden" name="id" value="<?=$id?>">
         <div class="input-group mb-3">
-            <input type="text" name="chatfriend" class="form-control" placeholder="Friend" value=<?=$get?>>
+            <input type="text" name="chatfriend" class="form-control" placeholder="Friend" value=<?=$friendUsername?>>
             <button type="button" class="btn btn-primary" onClick="location.href='social.php?id=<?=$id?>&p=<?=$get?>'">To Game</button>
         </div>
         <div class="form-group">
-            <textarea class="form-control" name="text" rows="5"></textarea>
+            <textarea class="form-control" id="textbox" placeholder="Enter email" name="textbox" rows="5"></textarea>
         </div>
         <button type="submit" class="btn btn-primary mt-2">SEND</button>
     </form>
-    <?php //SEND MESSAGE
+    <?php //SEND MESSAGE (moved to own file -> sendMessage.php)
 
-                if (!empty($msgStr = $_POST["textbox"]))
-                {
-                    $mysqltime = date ('Y-m-d H:i:s');
-
-                    $stmt = mysqli_stmt_init($conn);
-                    $sql = "INSERT INTO chessdb.Messages (`UserID-From`, `userId-To`, messageContent, dateSent) VALUES (?,?,?,?);";
-                    mysqli_stmt_prepare($stmt, $sql);
-                    $temp = "date";
-                    mysqli_stmt_bind_param($stmt, "iiss", $id, $friendId, $msgStr, $mysqltime);
-                    mysqli_execute($stmt);
-
-                }
-                
-                //DISPLAY MESSSAGES
-                $chatfriend = $_GET["friend"];
-                
-                    $stmt = mysqli_stmt_init($conn);
-                    $sql = "SELECT * 
-                            FROM chessdb.Messages 
-                            WHERE (`UserID-From` = ? and `UserID-To` = ?) or (`UserID-From` = ? and `UserID-To` = ?)
-                            ORDER BY dateSent;";
-                    mysqli_stmt_prepare($stmt, $sql);
-                    mysqli_stmt_bind_param($stmt, "iiii", $id, $friendID, $friendID, $id);
-                    mysqli_execute($stmt);
-                    $results = mysqli_stmt_get_result($stmt);
-                    while ($row = mysqli_fetch_assoc($results))
-                    {
-                       
-                        //display chat
-                        echo "<p>" . $row["dateSent"] . " : " . $row["messageContent"] . "</p>";
-                    }
+                //DISPLAY MESSSAGES (moved to own file -> getMessages.php)
+                include "includes/getMessages.php";
                     
             ?>
     <iframe width="100%" height="500" src="chat.php?id=$id&id=<?=$id?>" title="chats" frameBorder="1"></iframe>
