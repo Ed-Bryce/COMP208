@@ -26,10 +26,10 @@
             <button type="button" class="btn btn-secondary" data-bs-toggle="offcanvas" data-bs-target="#menu">Menu</button>
             <ul class="navbar-nav pl-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="board.php?id=<?=$id?>">Play</a>
+                    <a class="nav-link" href="board.php">Play</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="social.php?id=<?=$id?>">Friends</a>
+                    <a class="nav-link active" href="social.php">Friends</a>
                 </li>
             </ul>
         </div>
@@ -65,7 +65,7 @@
             $sql = "SELECT userID FROM chessdb.Users WHERE username = ?;";
             mysqli_stmt_prepare($stmt, $sql);
             mysqli_stmt_bind_param($stmt, "s", $reqout);
-            mysqli_execute($stmt);
+            mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt);
             $row = mysqli_fetch_assoc($result);
             $friendId = $row["userID"];
@@ -77,7 +77,7 @@
             $sql = "INSERT INTO chessdb.FriendRequests (from_user, to_user) VALUE (?, ?);";
             mysqli_stmt_prepare($stmt, $sql);
             mysqli_stmt_bind_param($stmt, "ii", $id, $friendId);
-            mysqli_execute($stmt);      
+            mysqli_stmt_execute($stmt);      
         }
         ?>    
     <hr>
@@ -114,13 +114,13 @@
                         $sql = "INSERT INTO chessdb.Friends (userID_1, userID_2) VALUES (?,?);";
                         mysqli_stmt_prepare($stmt, $sql);
                         mysqli_stmt_bind_param($stmt, "ii", $id, $RespId);
-                        mysqli_execute($stmt);
+                        mysqli_stmt_execute($stmt);
                     }
                     //REMOVE FROM FRIEND REQUESTS
                     $sql = "DELETE FROM FriendRequests WHERE (to_user = ? AND from_user = ?) OR (to_user = ? AND from_user = ?);";
                         mysqli_stmt_prepare($stmt, $sql);   
                         mysqli_stmt_bind_param($stmt, "iiii", $id, $RespId, $RespId, $id);
-                        mysqli_execute($stmt);
+                        mysqli_stmt_execute($stmt);
                         //RESET URL
                     Header("Location: social.php");
                 }

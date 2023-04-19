@@ -1,6 +1,6 @@
 <?php
     session_start();
-    //require "includes/loginSession.php";
+    require "includes/loginSession.php";
     $username = $_SESSION["username"];
 ?>
 
@@ -23,10 +23,10 @@
             <button type="button" class="btn btn-secondary" data-bs-toggle="offcanvas" data-bs-target="#menu">Menu</button>
             <ul class="navbar-nav pl-3">
                 <li class="nav-item">
-                    <a class="nav-link active" href="board.php?id=<?=$id?>">Play</a>
+                    <a class="nav-link active" href="board.php">Play</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="social.php?id=<?=$id?>">Friends</a>
+                    <a class="nav-link" href="social.php">Friends</a>
                 </li>
             </ul>
         </div>
