@@ -67,7 +67,8 @@
 
         <!-- Board -->
         <div class="container d-flex align-items-center border shadow-lg" style="width: 48%; height: 80vh; margin-top: 60px">
-            <p style="color: black;">add board here</p>
+            <!-- <p style="color: black;">add board here</p> -->
+            <img class="img-fluid mx-auto d-block" src="includes/chessBoard.png" alt="Game Placeholder">
         </div>
     </div>
 </body>
