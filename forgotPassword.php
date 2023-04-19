@@ -1,3 +1,7 @@
+<?php
+    require "includes/forgotPasswordModel.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
