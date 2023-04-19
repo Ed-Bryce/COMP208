@@ -4,8 +4,8 @@ require "dbConnection.php";
 $friendId = $_SESSION["friendID"];
 $id = $_SESSION["userID"];
 
-echo "<p>" . $friendId . "</p>";
-echo "<p>" . $id . "</p>";
+//echo "<p>" . $friendId . "</p>";
+//echo "<p>" . $id . "</p>";
 
 $stmt = mysqli_stmt_init($conn);
 $sql = "SELECT * 

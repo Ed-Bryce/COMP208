@@ -145,8 +145,8 @@
                     mysqli_stmt_bind_param($stmt, "ii", $id, $id);
                     mysqli_execute($stmt);
                     $result = mysqli_stmt_get_result($stmt);
-
-                    //LOOP THROUGH REQUESTS AND DISPLAY
+					
+					//LOOP THROUGH REQUESTS AND DISPLAY
                     while ($row = mysqli_fetch_assoc($result))
                     {
                         if ($row["userID"] != $id) {
@@ -156,6 +156,8 @@
                             echo "<p><a href='social.php?friend=$friendUsername&id=$friendId'>".$friendUsername."</a></p>";
                         }
                     }
+
+                    
                 ?>
             </table>
         </div>
@@ -166,7 +168,8 @@
     <div class="col-lg-4 mb-4">
     <div class="card">
     <h3>Chat with friends</h3>
-    <?php
+    <?php   
+            // causes error but breaks everything if removed
                 $friend=$_GET["friend"];
                 $friendID = $_GET["id"]
             ?>
@@ -181,7 +184,10 @@
         </div>
         <button type="submit" class="btn btn-primary mt-2">SEND</button>
     </form>
-    <?php //SEND MESSAGE (moved to own file -> sendMessage.php)
+    <?php 
+                // Working now 
+
+                //SEND MESSAGE (moved to own file -> sendMessage.php)
 
                 //DISPLAY MESSSAGES (moved to own file -> getMessages.php)
                 include "includes/getMessages.php";
