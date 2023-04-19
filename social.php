@@ -48,7 +48,7 @@
                 <div class="card">
     <h3>Friend Request Out</h3>
     <form method="post" action="social.php">
-        <input type="hidden" name="id" value="<?=$id?>">
+        <input type="hidden" name="id" value="<?=$username?>">
         <div class="input-group mb-3">
             <input type="text" name="reqout" class="form-control" placeholder="New friend">
             <button type="submit" class="btn btn-primary">SEND</button>
