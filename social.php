@@ -3,6 +3,7 @@ require "includes/loginSession.php";
 require "includes/dbConnection.php";
 $id = $_SESSION["userID"];
 $username = $_SESSION["username"];
+header("Refresh:5");
 ?>
 
 <!DOCTYPE html>
