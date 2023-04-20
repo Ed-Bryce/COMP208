@@ -6,6 +6,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="styling/styling.css">
     <meta charset="utf-8">
@@ -15,10 +16,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body style = "background-color: white;">
+
+<body style="background-color: white;">
     <!-- Nav Bar -->
-        <!-- NAVIGATION BAR ######################################### -->
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- NAVIGATION BAR ######################################### -->
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container justify-content-start">
             <button type="button" class="btn btn-secondary" data-bs-toggle="offcanvas" data-bs-target="#menu">Menu</button>
             <ul class="navbar-nav pl-3">
@@ -31,7 +33,7 @@
             </ul>
         </div>
         <div class="container-fluid justify-content-center">
-            <span class="navbar-brand">Chess Game - Player: <?=$username?></span>
+            <span class="navbar-brand">Chess Game - Player: <?= $username ?></span>
         </div>
         <div class="container justify-content-end">
             <a href="login.php" class="btn btn-danger" role="button"><span style="color:#fff;">Logout</span></a>
@@ -41,14 +43,14 @@
     <!-- Sidebar -->
     <div class="offcanvas offcanvas-start" id="menu">
         <div class="offcanvas-header">
-        <!-- sidebar header -->
+            <!-- sidebar header -->
 
             <h1 class="offcanvas-title">Menu</h1>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
 
         </div>
         <div class="offcanvas-body">
-        <!-- sidebar body -->
+            <!-- sidebar body -->
 
             <a type="button" class="btn" href="changePassword.php">Change Password</a>
 
@@ -59,10 +61,10 @@
     <div class="row">
 
         <!-- Game Info -->
-        <div class = "container m-10 border col-3 shadow-lg" style="background-color:#212429;  margin-top: 60px; border-radius: 25px;">
+        <div class="container m-10 border col-3 shadow-lg" style="background-color:#212429;  margin-top: 60px; border-radius: 25px;">
             <div style="color:white"><br>
                 <h3 class="m-1" style="text-align:center; font-family: Futura">Game Info</h3>
-            </div> 
+            </div>
         </div>
 
         <!-- Board -->
@@ -72,4 +74,5 @@
         </div>
     </div>
 </body>
+
 </html>
