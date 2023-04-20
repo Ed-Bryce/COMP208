@@ -21,5 +21,8 @@ while ($row = mysqli_fetch_assoc($results))
     {
                        
         //display chat
-        echo "<p>" . $row["username"] . " : " . $row["messageContent"] . "</p>";
+        echo "<li class='list-group-item'>";
+        echo "<p><b>" . $row["username"] . "</b> (" . $row["dateSent"] .  "): " ."</p>";
+        echo "<p>" . $row["messageContent"] . "</p>";
+        echo "</li>";
     }

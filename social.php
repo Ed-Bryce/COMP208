@@ -201,14 +201,21 @@ header("Refresh:5");
                         <div class="form-group">
                             <textarea class="form-control" id="textbox" placeholder="Enter message" name="textbox" rows="5"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary mt-2">SEND</button>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary mt-2">SEND</button>
+                        </div>
                     </form>
+                    <h4 class="pt-2">Messages:</h4>
+                    <div class= "mt-2">
+                            <ul class="list-group pb-2">
                     <?php
                     // Working now 
                     //SEND MESSAGE (moved to own file -> sendMessage.php)
                     //DISPLAY MESSSAGES (moved to own file -> getMessages.php)
                     include "includes/getMessages.php";
-                    ?>
+                    ?>  
+                            </ul>
+                    </div>
                 </div>
             </div>
         </div>
