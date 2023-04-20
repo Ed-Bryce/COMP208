@@ -188,7 +188,7 @@ header("Refresh:5");
                         <input type="hidden" name="id" value="<?= $friendID ?>">
                         <input type="hidden" name="username" value="<?= $friend ?>">
                         <div class="input-group mb-3">
-                            <input type="text" name="chatfriend" class="form-control" placeholder="Friend" value=<?= $friend ?> readonly>
+                            <input readonly type="text" name="chatfriend" class="form-control" placeholder="Friend" value=<?= $friend ?> ></input>
                             <button type="button" class="btn btn-primary" onClick="location.href='board.php'">To Game</button>
                         </div>
                         <div class="form-group">
