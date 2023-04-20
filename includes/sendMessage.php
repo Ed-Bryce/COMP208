@@ -3,12 +3,9 @@ session_start();
 require "dbConnection.php";
 
 $msgStr = $_POST["textbox"];
-$friendId = $_SESSION["friendID"];
+$friendId = $_POST["id"];
+$friendUsername = $_POST["username"];
 $id = $_SESSION["userID"];
-
-echo "<p>" . $msgStr . "</p>";
-echo "<p>" . $friendId . "</p>";
-echo "<p>" . $id . "</p>";
 
 $mysqltime = date ('Y-m-d H:i:s');
 $stmt = mysqli_stmt_init($conn);
@@ -18,7 +15,7 @@ $temp = "date";
 mysqli_stmt_bind_param($stmt, "iiss", $id, $friendId, $msgStr, $mysqltime);
 mysqli_stmt_execute($stmt);
 
-header("Location: ../social.php");
+header("Location: ../social.php?friend=$friendUsername&id=$friendId");
 
 
 ?>
