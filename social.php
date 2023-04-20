@@ -7,7 +7,7 @@ $username = $_SESSION["username"];
 ?>
 
 <!DOCTYPE html>
-<html lang="en" style="height:100vh">
+<html lang="en" style="height:100%">
 
 <head>
     <meta charset="utf-8">
@@ -21,7 +21,7 @@ $username = $_SESSION["username"];
     <link rel="stylesheet" href="stylesheet.css">
 </head>
 
-<body style="height:100vh">
+<body style="height:100%">
     <!-- NAVIGATION BAR ######################################### -->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container justify-content-start">
@@ -45,9 +45,9 @@ $username = $_SESSION["username"];
 
     <!-- body -->
     <div class="container mt-5">
-        <div class="row" style="height:100vh">
-            <div class="col-md-4" style="height:100vh">
-                <div class="card p-2" style="height:80vh">
+        <div class="row" style="">
+            <div class="col-md-4" style="">
+                <div class="card p-2" style="height:100%">
                     <h3 class="text-center">Send Friend Request</h3>
                     <form method="post" action="social.php">
                         <div class="input-group mb-3">
@@ -136,7 +136,7 @@ $username = $_SESSION["username"];
             </div>
 
             <div class="col-md-4">
-                <div class="card p-2" style="height:80vh">
+                <div class="card p-2" style="height:100%">
                     <h3 class="text-center">Friends List</h3>
                     <table>
                         <!-- GET FRIENDS LIST FROM DB -->
@@ -176,7 +176,7 @@ $username = $_SESSION["username"];
                 </table>
             </div>
             <div class="col-md-4">
-                <div class="card p-2" style="height:80vh">
+                <div class="card p-2" style="height:100%">
                     <h3 class="text-center">Chat with friends</h3>
                     <?php
                     // causes error but breaks everything if removed
