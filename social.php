@@ -180,8 +180,16 @@ header("Refresh:5");
                     <h3 class="text-center">Chat with friends</h3>
                     <?php
                     // causes error but breaks everything if removed
-                    $friend = $_GET["friend"];
-                    $friendID = $_GET["id"]
+                    if (isset($_GET["friend"], $_GET["id"]))
+                    {
+                        $friend = $_GET["friend"];
+                        $friendID = $_GET["id"];
+                    }
+                    else
+                    {
+                        $friend = "";
+                        $friendID = -1;
+                    }
                     ?>
                     <form method="post" action="includes/sendMessage.php">
                         <input type="hidden" name="id" value="<?= $friendID ?>">
