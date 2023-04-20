@@ -3,16 +3,6 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-a {
-    color: #000;
-    text-decoration: none;
-}
-
-a:hover {
-    color: #007bff;
-    text-decoration: none;
-}
-
 .card {
     background-color: #f8f9fa;
     border-radius: 10px;
