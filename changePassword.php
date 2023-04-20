@@ -27,11 +27,6 @@
                         <h3>Change password</h3>
                     </div>
                     <form action="includes/updatePassword.php" class="needs-validation" method="post">
-                        <!--Email-->
-                        <div class="form-floating mb-3 mt-3">
-                            <input type="text" class="form-control" id="email" placeholder="Enter email" name="email" required>
-                            <label for="email">Email</label>
-                        </div>
                         <!--Current pwd -->
                         <div class="form-floating mb-3 mt-3">
                             <input type="password" class="form-control" id="currentPwd" placeholder="Enter current password" name="currentPwd" required>

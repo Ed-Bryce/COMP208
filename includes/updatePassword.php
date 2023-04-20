@@ -1,7 +1,8 @@
 <?php
+    require "loginSession.php";
     require "dbConnection.php";
     //get input from text boxes
-    $email = $_POST["email"];
+    $email = $_SESSION["email"];
     $currentPwd = $_POST["currentPwd"];
     $newPwd1 = $_POST["newPwd1"];
     $newPwd2 = $_POST["newPwd2"];

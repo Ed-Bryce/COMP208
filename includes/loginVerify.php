@@ -17,6 +17,7 @@
                 $_SESSION["failed"] = "false";
                 $_SESSION["userID"] = $row["userID"];
                 $_SESSION["username"] = $row["username"];
+                $_SESSION["email"] = $email;
                 header("Location: ../board.php");
                 exit;
             }
