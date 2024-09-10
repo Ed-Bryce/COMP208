@@ -1,1 +1,1 @@
-# COMP208 - Chess Game 
+# COMP208 - Chess Game (Website component)
